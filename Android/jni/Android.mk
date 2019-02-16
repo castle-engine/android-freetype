@@ -2,16 +2,19 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-FREETYPE_SRC_PATH := ../../
+FREETYPE_SRC_PATH_FROM_NDK_ROOT := ../
+FREETYPE_SRC_PATH := ../$(FREETYPE_SRC_PATH_FROM_NDK_ROOT)
 
-LOCAL_MODULE := freetype2-static
+LOCAL_MODULE := freetype
 
 LOCAL_CFLAGS := -DANDROID_NDK \
 		-DFT2_BUILD_LIBRARY=1
 
+# LOCAL_C_INCLUDES uses FREETYPE_SRC_PATH_FROM_NDK_ROOT,
+# as docs say "relative to the NDK *root* directory" http://android.mk/ .
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/include_all \
-		$(FREETYPE_SRC_PATH)include \
-		$(FREETYPE_SRC_PATH)src
+		$(FREETYPE_SRC_PATH_FROM_NDK_ROOT)include \
+		$(FREETYPE_SRC_PATH_FROM_NDK_ROOT)src
 
 LOCAL_SRC_FILES := \
 	$(FREETYPE_SRC_PATH)src/autofit/autofit.c \
@@ -38,5 +41,5 @@ LOCAL_SRC_FILES := \
 
 LOCAL_LDLIBS := -ldl -llog
 
-include $(BUILD_STATIC_LIBRARY)
-
+include $(BUILD_SHARED_LIBRARY)
+# include $(BUILD_STATIC_LIBRARY)

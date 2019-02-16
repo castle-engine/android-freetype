@@ -1,10 +1,19 @@
+# FreeType library for Android for Castle Game Engine
+
+This is a fork of https://github.com/cdave1/freetype2-android with minimal modifications to:
+
+- Build for android-16 platform.
+- Build a shared library.
+
+Just use `make` (that will call `ndk-build`), this creates `Android/libs/armeabi-v7a/libfreetype.so` which you can use on Android. For _Castle Game Engine_, this should be copied over to `castle-engine/tools/build-tool/data/android/integrated-services/freetype/app/src/main/jni/armeabi-v7a` .
+
 # Freetype 2 Android
 
 This is simply a distribution of the Freetype 2 library, that includes Android make files ready to build the Freetype 2 library into a static and shared binaries for version 2.2 of the Android operating system.  This distribution requires release 5 of the Android Native Development Kit.
 
 The project only includes the Freetype modules for processing TrueType and OpenType fonts.  Other font modules have been disabled.  If you want to re-enable these modules, you will need to download the Freetype 2 source code, and then copy the module source files to the appropriate location in either the "include/" or "src/" folders of this distribution.  The Freetype source code is [available here](http://download.savannah.gnu.org/releases/freetype/).  The instructions for including these new modules in the Android makefile is left as an exercise, but if you follow the pattern of the truetype module in the Android makefile, your module should compile correctly.
 
-The code in this distribution comes from version 2.4.4 of the Freetype library.   
+The code in this distribution comes from version 2.4.4 of the Freetype library.
 
 There is an analogous library for Xcode and iOS [here](https://github.com/cdave1/freetype2-ios).
 
